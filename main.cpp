@@ -4,9 +4,12 @@
 
 #include <iostream>
 
+using std::wstring;
+
 using std::cout;
+using std::cin;
 
 int main() {
-   cout << "this project is working";
+
    return 0;
 }
