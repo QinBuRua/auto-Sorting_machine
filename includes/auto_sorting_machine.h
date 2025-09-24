@@ -10,6 +10,7 @@
 namespace auto_sm {
 
 using std::vector;
+using std::string;
 using std::wstring;
 using std::wstring_view;
 
@@ -20,6 +21,9 @@ enum CharacterState {
    END,
    STATE_COUNT
 };
+
+extern const string CharacterState_TO_STRING[STATE_COUNT];
+extern const char CS_TO_STRING[STATE_COUNT];
 
 namespace train {
 
@@ -43,6 +47,7 @@ public:
    SentencePreprocessor(wstring_view rawString);
 
    vector<CharacterState>& get_CharacterStates();
+   string get_CharacterStatesStr() const;
 };
 
 class Preprocessor {

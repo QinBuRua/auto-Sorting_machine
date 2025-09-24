@@ -4,7 +4,19 @@
 
 #include "auto_sorting_machine.h"
 
+using std::string;
+using auto_sm::CharacterState;
+
 using namespace auto_sm::train;
+
+const string auto_sm::CharacterState_TO_STRING[STATE_COUNT] = {
+   "SINGE",
+   "BEGIN",
+   "MIDDLE",
+   "END"
+};
+
+const char auto_sm::CS_TO_STRING[STATE_COUNT]{'S', 'B', 'M', 'E'};
 
 bool SentencePreprocessor::m_Read_char() {
    ++m_RawIndex;
@@ -62,8 +74,16 @@ SentencePreprocessor::SentencePreprocessor(wstring_view rawString) : m_RawString
    m_Process();
 }
 
-std::vector<auto_sm::CharacterState> & SentencePreprocessor::get_CharacterStates() {
+std::vector<auto_sm::CharacterState>& SentencePreprocessor::get_CharacterStates() {
    return m_CharacterStates;
+}
+
+std::string SentencePreprocessor::get_CharacterStatesStr() const{
+   string str;
+   for (const auto iter: m_CharacterStates) {
+      str.push_back(CS_TO_STRING[iter]);
+   }
+   return str;
 }
 
 wchar_t Preprocessor::read_wchar() {

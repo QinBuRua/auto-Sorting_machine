@@ -4,12 +4,17 @@
 
 #include <iostream>
 
+using std::string;
 using std::wstring;
 
 using std::cout;
 using std::cin;
 
 int main() {
+   wstring wstr;
+   string str;
+
+   cin>>str;
 
    return 0;
 }
