@@ -3,11 +3,13 @@
 //
 
 #include "auto_sorting_machine.h"
+#include "tools.h"
 
 using std::string;
 using auto_sm::CharacterState;
 
 using namespace auto_sm::train;
+using namespace tools;
 
 const string auto_sm::CharacterState_TO_STRING[STATE_COUNT] = {
    "SINGE",
@@ -24,7 +26,7 @@ bool SentencePreprocessor::m_Read_char() {
       return false;
    }
    m_Wch = m_RawString[m_RawIndex];
-   if (m_Wch != ' ') {
+   if (!tools::is_wspace_custom(m_Wch)) {
       ++m_Index;
    }
    return true;
@@ -39,14 +41,14 @@ void SentencePreprocessor::m_Process() {
       m_Sentence.push_back(m_Wch);
       if (m_CharacterStates[m_Index - 1] == SINGLE
           || m_CharacterStates[m_Index - 1] == END) {
-         if (m_Peek_char() == ' ') {
+         if (is_wspace_custom(m_Peek_char())) {
             m_CharacterStates.push_back(SINGLE);
             m_Read_char();
          } else {
             m_CharacterStates.push_back(BEGIN);
          }
       } else {
-         if (m_Peek_char() == ' ') {
+         if (is_wspace_custom(m_Peek_char())) {
             m_CharacterStates.push_back(END);
             m_Read_char();
          } else {
@@ -62,7 +64,7 @@ SentencePreprocessor::SentencePreprocessor(wstring_view rawString) : m_RawString
    m_Wch = m_RawString[m_RawIndex];
 
    m_Sentence.push_back(m_Wch);
-   if (m_Peek_char() == ' ') {
+   if (tools::is_wspace_custom(m_Peek_char())) {
       m_CharacterStates.push_back(SINGLE);
       m_Read_char();
    } else {
@@ -86,16 +88,13 @@ std::string SentencePreprocessor::get_CharacterStatesStr() const{
    return str;
 }
 
-wchar_t Preprocessor::read_wchar() {
-
-}
 
 Preprocessor::Preprocessor(vector<wstring> rawStrings) {
    for (auto rawString: rawStrings) {
       vector<CharacterState> characterStates(rawString.size());
       wstring str;
       for (auto ch: rawString) {
-         if (ch == ' ') {
+         if (ch == L' ') {
 
          }
       }

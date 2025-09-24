@@ -11,6 +11,8 @@ namespace tools {
 
 std::wstring string_to_wstring(const std::string &str);
 
+bool is_wspace_custom(wchar_t ch);
+
 }
 
 #endif //AUTO_SORTING_MACHINE_TOOLS_H
