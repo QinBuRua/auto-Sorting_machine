@@ -33,7 +33,7 @@ bool SentencePreprocessor::m_Read_char() {
    return true;
 }
 
-wchar_t SentencePreprocessor::m_Peek_char() {
+wchar_t SentencePreprocessor::m_Peek_char() const {
    return m_RawString[m_RawIndex + 1];
 }
 

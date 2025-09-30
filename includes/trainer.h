@@ -28,7 +28,7 @@ private:
    size_t m_Index;
 
    bool m_Read_char();
-   wchar_t m_Peek_char();
+   wchar_t m_Peek_char() const;
 
    void m_Process();
 };
