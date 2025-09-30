@@ -8,4 +8,5 @@ include_directories(${PROJECT_SOURCE_DIR}/includes)
 add_executable(auto-sorting_machine main.cpp
         train/preprocessing.cpp
         tools/tools.cpp
-        includes/tools.h)
+        includes/tools/tools.h
+        includes/trainer.h)

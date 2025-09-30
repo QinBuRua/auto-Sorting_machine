@@ -5,7 +5,7 @@
 #include <iostream>
 
 #include "auto_sorting_machine.h"
-#include "tools.h"
+#include "includes/tools/tools.h"
 
 using std::string;
 using std::wstring;
@@ -15,7 +15,7 @@ using std::cin;
 using std::wcin;
 using std::wcout;
 
-using auto_sm::train::SentencePreprocessor;
+using auto_sm::trainer::SentencePreprocessor;
 
 int main() {
    wstring wstr = L"我 爱 数学 ";

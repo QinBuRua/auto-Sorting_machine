@@ -2,23 +2,24 @@
 // Created by QinBu_Rua on 2025/9/24.
 //
 
-#include "auto_sorting_machine.h"
-#include "tools.h"
+#include <string>
+#include <vector>
 
+#include "trainer.h"
+#include "../includes/tools/tools.h"
+
+using std::wstring;
+using std::wstring_view;
 using std::string;
+using std::string_view;
+
+using std::vector;
+
 using auto_sm::CharacterState;
 
-using namespace auto_sm::train;
+using namespace auto_sm::trainer;
 using namespace tools;
 
-const string auto_sm::CharacterState_TO_STRING[STATE_COUNT] = {
-   "SINGE",
-   "BEGIN",
-   "MIDDLE",
-   "END"
-};
-
-const char auto_sm::CS_TO_STRING[STATE_COUNT]{'S', 'B', 'M', 'E'};
 
 bool SentencePreprocessor::m_Read_char() {
    ++m_RawIndex;
@@ -76,18 +77,17 @@ SentencePreprocessor::SentencePreprocessor(wstring_view rawString) : m_RawString
    m_Process();
 }
 
-std::vector<auto_sm::CharacterState>& SentencePreprocessor::get_CharacterStates() {
+vector<auto_sm::CharacterState>& SentencePreprocessor::get_CharacterStates() {
    return m_CharacterStates;
 }
 
-std::string SentencePreprocessor::get_CharacterStatesStr() const{
+string SentencePreprocessor::get_CharacterStatesStr() const{
    string str;
    for (const auto iter: m_CharacterStates) {
       str.push_back(CS_TO_STRING[iter]);
    }
    return str;
 }
-
 
 Preprocessor::Preprocessor(vector<wstring> rawStrings) {
    for (auto rawString: rawStrings) {
