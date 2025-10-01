@@ -4,8 +4,7 @@
 
 #include <iostream>
 
-#include "auto_sorting_machine.h"
-#include "includes/tools/tools.h"
+#include "trainer.h"
 
 using std::string;
 using std::wstring;

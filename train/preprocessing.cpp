@@ -6,7 +6,7 @@
 #include <vector>
 
 #include "trainer.h"
-#include "../includes/tools/tools.h"
+#include "tools/tools.h"
 
 using std::wstring;
 using std::wstring_view;

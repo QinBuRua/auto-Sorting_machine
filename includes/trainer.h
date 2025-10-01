@@ -6,7 +6,8 @@
 #define AUTO_SORTING_MACHINE_TRAINER_H
 
 #include <iostream>
-#include "auto_sorting_machine.h"
+#include <vector>
+#include "frontend_auto_sm.h"
 
 namespace auto_sm::trainer {
 
