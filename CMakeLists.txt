@@ -14,9 +14,12 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(json_git)
 
 add_executable(auto_sorting-machine
-        main.cpp
+        src/main.cpp
+        src/frontend_auto_sm.cpp
+
         train/preprocessing.cpp
-        tools/tools.cpp
+
+        src/tools.cpp
 )
 target_link_libraries(auto_sorting-machine PRIVATE json_lib)
 

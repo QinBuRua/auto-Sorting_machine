@@ -2,10 +2,23 @@
 // Created by QinBu_Rua on 2025/9/24.
 //
 
-#include "../includes/tools/tools.h"
+#include "tools.h"
 #include <filesystem>
+#include <sstream>
 
 using namespace tools;
+
+using std::string;
+using std::wstring;
+
+using std::stringstream;
+
+template<typename T>
+static string to_string(T content) {
+   stringstream sstr;
+   sstr << content;
+   return sstr.str();
+}
 
 std::wstring tools::string_to_wstring(const std::string &str) {
    std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
