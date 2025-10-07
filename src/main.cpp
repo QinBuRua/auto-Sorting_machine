@@ -19,12 +19,10 @@ using auto_sm::CharacterStateArray;
 using auto_sm::CharacterState;
 
 int main() {
-   CharacterStateArray characterStates(16);
-   characterStates.set(5, CharacterState::BEGIN);
-   characterStates.set(7, CharacterState::MIDDLE);
+   wstring sentence=L"我 爱 数学 你们呢";
+   SentencePreprocessor sp(sentence);
 
-   cout << characterStates.get(5) << ' ';
-   cout << characterStates.get(7) << ' ';
+   cout<<sp.get_CharacterStatesStr();
 
    return 0;
 }

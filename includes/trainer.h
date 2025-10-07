@@ -15,14 +15,13 @@ class SentencePreprocessor {
 public:
    SentencePreprocessor(std::wstring_view rawString);
 
-   std::vector<CharacterState>& get_CharacterStates();
+   CharacterStateArray& get_CharacterStates();
    std::string get_CharacterStatesStr() const;
 
 private:
    std::wstring_view m_RawString;
 
-   std::vector<CharacterState> m_CharacterStates;
-   std::wstring m_Sentence;
+   CharacterStateArray m_CharacterStates;
 
    wchar_t m_Wch;
    size_t m_RawIndex;
@@ -36,7 +35,7 @@ private:
 
 class Preprocessor {
 public:
-   Preprocessor(std::vector<std::wstring> rawStrings);
+   Preprocessor(std::vector<std::wstring>&& rawStrings);
 
 private:
    std::vector<std::wstring> m_RawStrings;

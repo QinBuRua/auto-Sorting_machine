@@ -17,9 +17,9 @@ using std::vector;
 
 using auto_sm::CharacterState;
 
+using namespace auto_sm;
 using namespace auto_sm::trainer;
 using namespace tools;
-
 
 bool SentencePreprocessor::m_Read_char() {
    ++m_RawIndex;
@@ -39,9 +39,8 @@ wchar_t SentencePreprocessor::m_Peek_char() const {
 
 void SentencePreprocessor::m_Process() {
    do {
-      m_Sentence.push_back(m_Wch);
-      if (m_CharacterStates[m_Index - 1] == SINGLE
-          || m_CharacterStates[m_Index - 1] == END) {
+      if (m_CharacterStates.get(m_Index - 1) == SINGLE
+          || m_CharacterStates.get(m_Index - 1) == END) {
          if (is_wspace_custom(m_Peek_char())) {
             m_CharacterStates.push_back(SINGLE);
             m_Read_char();
@@ -49,7 +48,7 @@ void SentencePreprocessor::m_Process() {
             m_CharacterStates.push_back(BEGIN);
          }
       } else {
-         if (is_wspace_custom(m_Peek_char())) {
+         if (is_wspace_custom(m_Peek_char()) || m_RawIndex + 1 == m_RawString.size()) {
             m_CharacterStates.push_back(END);
             m_Read_char();
          } else {
@@ -64,7 +63,6 @@ SentencePreprocessor::SentencePreprocessor(wstring_view rawString) : m_RawString
    m_Index = 0;
    m_Wch = m_RawString[m_RawIndex];
 
-   m_Sentence.push_back(m_Wch);
    if (tools::is_wspace_custom(m_Peek_char())) {
       m_CharacterStates.push_back(SINGLE);
       m_Read_char();
@@ -77,26 +75,18 @@ SentencePreprocessor::SentencePreprocessor(wstring_view rawString) : m_RawString
    m_Process();
 }
 
-vector<auto_sm::CharacterState>& SentencePreprocessor::get_CharacterStates() {
+CharacterStateArray& SentencePreprocessor::get_CharacterStates() {
    return m_CharacterStates;
 }
 
-string SentencePreprocessor::get_CharacterStatesStr() const{
+string SentencePreprocessor::get_CharacterStatesStr() const {
    string str;
-   for (const auto iter: m_CharacterStates) {
-      str.push_back(CS_TO_STRING[iter]);
+   for (size_t i = 0; i < m_CharacterStates.size(); ++i) {
+      str.push_back(CS_TO_STRING[m_CharacterStates.get(i)]);
    }
    return str;
 }
 
-Preprocessor::Preprocessor(vector<wstring> rawStrings) {
-   for (auto rawString: rawStrings) {
-      vector<CharacterState> characterStates(rawString.size());
-      wstring str;
-      for (auto ch: rawString) {
-         if (ch == L' ') {
+Preprocessor::Preprocessor(vector<wstring> &&rawStrings) {
 
-         }
-      }
-   }
 }

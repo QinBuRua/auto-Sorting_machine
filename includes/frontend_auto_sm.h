@@ -27,8 +27,15 @@ public:
    CharacterStateArray(size_t size);
    ~CharacterStateArray();
 
+   size_t size() const;
+   size_t capacity() const;
+
    CharacterState get(size_t index) const;
    void set(size_t index, CharacterState state);
+
+   void resize(size_t size);
+   void reserve(size_t capacity);
+   void push_back(CharacterState state);
 
 private:
    std::unique_ptr<uint8_t[]> m_Value = nullptr;
