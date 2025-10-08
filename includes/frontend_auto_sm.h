@@ -25,6 +25,7 @@ class CharacterStateArray {
 public:
    CharacterStateArray();
    CharacterStateArray(size_t size);
+   CharacterStateArray(CharacterStateArray&& that);
    ~CharacterStateArray();
 
    size_t size() const;

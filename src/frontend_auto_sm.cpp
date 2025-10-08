@@ -33,6 +33,12 @@ CharacterStateArray::CharacterStateArray(size_t size) {
    m_Value = std::make_unique<uint8_t[]>(m_Capacity);
 }
 
+CharacterStateArray::CharacterStateArray(CharacterStateArray &&that) {
+   m_Size = that.m_Size;
+   m_Capacity = that.m_Capacity;
+   m_Value = std::move(that.m_Value);
+}
+
 CharacterStateArray::~CharacterStateArray() = default;
 
 size_t CharacterStateArray::size() const {
